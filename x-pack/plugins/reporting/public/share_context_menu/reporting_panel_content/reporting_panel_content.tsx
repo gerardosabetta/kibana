@@ -11,6 +11,7 @@ import {
   EuiCopy,
   EuiForm,
   EuiFormRow,
+  EuiHideFor,
   EuiHorizontalRule,
   EuiSpacer,
   EuiText,
@@ -189,30 +190,33 @@ class ReportingPanelContentUi extends Component<Props, State> {
 
         {this.renderGenerateReportButton(false)}
 
-        <EuiHorizontalRule
-          margin="s"
-          style={{ width: 'auto', marginLeft: '-16px', marginRight: '-16px' }}
-        />
+        <EuiHideFor sizes="all">
+          <EuiHorizontalRule
+            margin="s"
+            style={{ width: 'auto', marginLeft: '-16px', marginRight: '-16px' }}
+          />
 
-        <EuiAccordion
-          id="advanced-options"
-          buttonContent={i18n.translate('xpack.reporting.panelContent.advancedOptions', {
-            defaultMessage: 'Advanced options',
-          })}
-          paddingSize="none"
-        >
-          <EuiSpacer size="s" />
-          <EuiText size="s">
-            <p>
-              <FormattedMessage
-                id="xpack.reporting.panelContent.howToCallGenerationDescription"
-                defaultMessage="Alternatively, copy this POST URL to call generation from outside Kibana or from Watcher."
-              />
-            </p>
-          </EuiText>
-          <EuiSpacer size="s" />
-          {this.renderCopyURLButton({ isUnsaved, exceedsMaxLength })}
-        </EuiAccordion>
+          <EuiAccordion
+            id="advanced-options"
+            buttonContent={i18n.translate('xpack.reporting.panelContent.advancedOptions', {
+              defaultMessage: 'Advanced options',
+            })}
+            paddingSize="none"
+            data-test-subj="shareReportingAdvancedOptionsButton"
+          >
+            <EuiSpacer size="s" />
+            <EuiText size="s">
+              <p>
+                <FormattedMessage
+                  id="xpack.reporting.panelContent.howToCallGenerationDescription"
+                  defaultMessage="Alternatively, copy this POST URL to call generation from outside Kibana or from Watcher."
+                />
+              </p>
+            </EuiText>
+            <EuiSpacer size="s" />
+            {this.renderCopyURLButton({ isUnsaved, exceedsMaxLength })}
+          </EuiAccordion>
+        </EuiHideFor>
       </EuiForm>
     );
   }

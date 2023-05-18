@@ -52,24 +52,6 @@ export const getTopNavLinks = ({
   persistDataView: (dataView: DataView) => Promise<DataView | undefined>;
   updateAdHocDataViewId: (dataView: DataView) => Promise<DataView>;
 }): TopNavMenuData[] => {
-  const options = {
-    id: 'options',
-    label: i18n.translate('discover.localMenu.localMenu.optionsTitle', {
-      defaultMessage: 'Options',
-    }),
-    description: i18n.translate('discover.localMenu.optionsDescription', {
-      defaultMessage: 'Options',
-    }),
-    run: (anchorElement: HTMLElement) =>
-      openOptionsPopover({
-        I18nContext: services.core.i18n.Context,
-        anchorElement,
-        theme$: services.core.theme.theme$,
-        services,
-      }),
-    testId: 'discoverOptionsButton',
-  };
-
   const alerts = {
     id: 'alerts',
     label: i18n.translate('discover.localMenu.localMenu.alertsTitle', {
@@ -205,7 +187,6 @@ export const getTopNavLinks = ({
   };
 
   return [
-    ...(services.capabilities.advancedSettings.save ? [options] : []),
     newSearch,
     openSearch,
     ...(!isPlainRecord ? [shareSearch] : []),

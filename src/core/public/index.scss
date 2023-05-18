@@ -1,3 +1,13 @@
 @import './variables';
 @import './mixins';
 @import './styles/index';
+
+
+.kbnBody.euiBody--headerIsFixed {
+  padding-top: 48px !important;
+}
+
+.kbnBody.euiBody--headerIsFixed:not(.euiDataGrid__restrictBody) .euiFlyout, .kbnBody.euiBody--headerIsFixed .euiCollapsibleNav {
+  top: 48px !important;
+  height: calc(100% - 48px) !important;
+}

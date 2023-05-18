@@ -111,60 +111,61 @@ export function Header({
       <HeaderTopBanner headerBanner$={observables.headerBanner$} />
       <header className={className} data-test-subj="headerGlobalNav">
         <div id="globalHeaderBars" className="header__bars">
-          <EuiHeader
-            theme="dark"
-            position="fixed"
-            className="header__firstBar"
-            sections={[
-              {
-                items: [
-                  <HeaderLogo
-                    href={homeHref}
-                    forceNavigation$={observables.forceAppSwitcherNavigation$}
-                    navLinks$={observables.navLinks$}
-                    navigateToApp={application.navigateToApp}
-                    loadingCount$={observables.loadingCount$}
-                    customBranding$={customBranding$}
-                  />,
-                ],
-                borders: 'none',
-              },
-              {
-                ...(observables.navControlsCenter$ && {
+          <EuiHideFor sizes="all">
+            <EuiHeader
+              theme="dark"
+              position="fixed"
+              className="header__firstBar"
+              sections={[
+                {
                   items: [
-                    <EuiShowFor sizes={['m', 'l', 'xl']}>
-                      <HeaderNavControls navControls$={observables.navControlsCenter$} />
-                    </EuiShowFor>,
+                    <HeaderLogo
+                      href={homeHref}
+                      forceNavigation$={observables.forceAppSwitcherNavigation$}
+                      navLinks$={observables.navLinks$}
+                      navigateToApp={application.navigateToApp}
+                      loadingCount$={observables.loadingCount$}
+                      customBranding$={customBranding$}
+                    />,
                   ],
-                }),
-                borders: 'none',
-              },
-              {
-                items: [
-                  <EuiHideFor sizes={['m', 'l', 'xl']}>
-                    <>
+                  borders: 'none',
+                },
+                {
+                  ...(observables.navControlsCenter$ && {
+                    items: [
+                      <EuiShowFor sizes={['m', 'l', 'xl']}>
+                        <HeaderNavControls navControls$={observables.navControlsCenter$} />
+                      </EuiShowFor>,
+                    ],
+                  }),
+                  borders: 'none',
+                },
+                {
+                  items: [
+                    <EuiHideFor sizes={['m', 'l', 'xl']}>
+                      <>
+                        <HeaderNavControls navControls$={observables.navControlsExtension$} />
+                        <HeaderNavControls navControls$={observables.navControlsCenter$} />
+                      </>
+                    </EuiHideFor>,
+                    <EuiHideFor sizes={['xs', 's']}>
                       <HeaderNavControls navControls$={observables.navControlsExtension$} />
-                      <HeaderNavControls navControls$={observables.navControlsCenter$} />
-                    </>
-                  </EuiHideFor>,
-                  <EuiHideFor sizes={['xs', 's']}>
-                    <HeaderNavControls navControls$={observables.navControlsExtension$} />
-                  </EuiHideFor>,
-                  <HeaderHelpMenu
-                    globalHelpExtensionMenuLinks$={globalHelpExtensionMenuLinks$}
-                    helpExtension$={observables.helpExtension$}
-                    helpSupportUrl$={observables.helpSupportUrl$}
-                    kibanaDocLink={kibanaDocLink}
-                    kibanaVersion={kibanaVersion}
-                    navigateToUrl={application.navigateToUrl}
-                  />,
-                  <HeaderNavControls navControls$={observables.navControlsRight$} />,
-                ],
-                borders: 'none',
-              },
-            ]}
-          />
-
+                    </EuiHideFor>,
+                    <HeaderHelpMenu
+                      globalHelpExtensionMenuLinks$={globalHelpExtensionMenuLinks$}
+                      helpExtension$={observables.helpExtension$}
+                      helpSupportUrl$={observables.helpSupportUrl$}
+                      kibanaDocLink={kibanaDocLink}
+                      kibanaVersion={kibanaVersion}
+                      navigateToUrl={application.navigateToUrl}
+                    />,
+                    <HeaderNavControls navControls$={observables.navControlsRight$} />,
+                  ],
+                  borders: 'none',
+                },
+              ]}
+            />
+          </EuiHideFor>
           <EuiHeader position="fixed" className="header__secondBar">
             <EuiHeaderSection grow={false}>
               <EuiHeaderSectionItem border="right" className="header__toggleNavButtonSection">
@@ -202,7 +203,9 @@ export function Header({
                 />
               </EuiHeaderSectionItem>
 
-              <HeaderNavControls side="left" navControls$={observables.navControlsLeft$} />
+              <EuiHideFor sizes="all">
+                <HeaderNavControls side="left" navControls$={observables.navControlsLeft$} />
+              </EuiHideFor>
             </EuiHeaderSection>
 
             {!breadcrumbsAppendExtension ? (
@@ -216,10 +219,12 @@ export function Header({
                 gutterSize={'none'}
               >
                 {Breadcrumbs}
-                <HeaderExtension
-                  extension={breadcrumbsAppendExtension.content}
-                  containerClassName={'header__breadcrumbsAppendExtension'}
-                />
+                <EuiHideFor sizes="all">
+                  <HeaderExtension
+                    extension={breadcrumbsAppendExtension.content}
+                    containerClassName={'header__breadcrumbsAppendExtension'}
+                  />
+                </EuiHideFor>
               </EuiFlexGroup>
             )}
 
