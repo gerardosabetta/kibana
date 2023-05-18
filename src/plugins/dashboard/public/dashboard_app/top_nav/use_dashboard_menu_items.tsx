@@ -135,13 +135,6 @@ export const useDashboardMenuItems = ({
    */
   const menuItems = useMemo(() => {
     return {
-      fullScreen: {
-        ...topNavStrings.fullScreen,
-        id: 'full-screen',
-        testId: 'dashboardFullScreenMode',
-        run: () => dispatch(setFullScreenMode(true)),
-      } as TopNavMenuData,
-
       labs: {
         ...topNavStrings.labs,
         id: 'labs',
@@ -240,7 +233,7 @@ export const useDashboardMenuItems = ({
     const labsMenuItem = isLabsEnabled ? [menuItems.labs] : [];
     const shareMenuItem = share ? [menuItems.share] : [];
     const writePermissionsMenuItems = showWriteControls ? [menuItems.clone, menuItems.edit] : [];
-    return [...labsMenuItem, menuItems.fullScreen, ...shareMenuItem, ...writePermissionsMenuItems];
+    return [...labsMenuItem, ...shareMenuItem, ...writePermissionsMenuItems];
   }, [menuItems, share, showWriteControls, isLabsEnabled]);
 
   const editModeTopNavConfig = useMemo(() => {
