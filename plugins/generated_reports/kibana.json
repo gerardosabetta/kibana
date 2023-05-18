@@ -1,0 +1,14 @@
+{
+  "id": "generatedReports",
+  "version": "1.0.0",
+  "kibanaVersion": "kibana",
+  "owner": {
+    "name": "gerardo.sabetta@attackiq.com",
+    "githubTeam": ""
+  },
+  "description": "Lists all the generated reports without getting you to the stack management section",
+  "server": true,
+  "ui": true,
+  "requiredPlugins": ["navigation"],
+  "optionalPlugins": []
+}

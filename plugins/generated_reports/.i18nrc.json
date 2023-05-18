@@ -1,0 +1,7 @@
+{
+  "prefix": "generatedReports",
+  "paths": {
+    "generatedReports": "."
+  },
+  "translations": ["translations/ja-JP.json"]
+}
